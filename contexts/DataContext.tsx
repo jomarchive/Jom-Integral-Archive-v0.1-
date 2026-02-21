@@ -37,9 +37,12 @@ export const DataProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [siteMeta, setSiteMeta] = useState<SiteMeta>({
-    quote: "Integration is an art, not just a calculation.",
-    about: "A public collection of elegant, brutal, and interesting calculus problems.",
-    welcomeText: "Welcome to the archive."
+    quote: "Loading...",
+    about: "Loading...",
+    welcomeText: "Loading...",
+    contact: "Loading...",
+    github: "Loading...",
+    credits: "Loading..."
   });
 
   // Use a ref to track if we have data to avoid dependency loops in useCallback
@@ -64,14 +67,14 @@ export const DataProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
           complete: (results) => {
             const firstRow: any = results.data[0];
             if (firstRow) {
-              setSiteMeta(prev => ({
-                quote: firstRow.QUOTE || prev.quote,
-                about: firstRow.ABOUT || prev.about,
-                welcomeText: firstRow.WELCOME || prev.welcomeText,
-                contact: firstRow.CONTACT || prev.contact,
-                github: firstRow.GITHUB || prev.github,
-                credits: firstRow.CREDITS || prev.credits
-              }));
+              setSiteMeta({
+                quote: firstRow.QUOTE || "",
+                about: firstRow.ABOUT || "",
+                welcomeText: firstRow.WELCOME || "",
+                contact: firstRow.CONTACT || "",
+                github: firstRow.GITHUB || "",
+                credits: firstRow.CREDITS || ""
+              });
             }
           }
         });
@@ -136,6 +139,14 @@ export const DataProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
           const errorMessage = err instanceof Error ? err.message : 'Unknown network error';
           setError(`Archive connection failed (${errorMessage}). Using local fallback.`);
           setIntegrals(FALLBACK_INTEGRALS);
+          setSiteMeta({
+            quote: "Integration is an art, not just a calculation.",
+            about: "A public collection of elegant, brutal, and interesting calculus problems.",
+            welcomeText: "Welcome to the archive.",
+            contact: "",
+            github: "",
+            credits: ""
+          });
         }
         setLoading(false);
       }

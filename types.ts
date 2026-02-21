@@ -30,4 +30,4 @@ export interface SiteMeta {
   credits?: string;    // From "CREDITS" column
 }
 
-export type SortOption = 'newest' | 'oldest' | 'difficulty';
+export type SortOption = 'newest' | 'oldest';

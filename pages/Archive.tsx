@@ -25,10 +25,6 @@ const Archive: React.FC = () => {
 
       if (sortBy === 'newest') return idB - idA;
       if (sortBy === 'oldest') return idA - idB;
-      if (sortBy === 'difficulty') {
-        const order = { [Difficulty.HARD]: 3, [Difficulty.MEDIUM]: 2, [Difficulty.EASY]: 1 };
-        return order[b.difficulty] - order[a.difficulty];
-      }
       return 0;
     });
   }, [integrals, search, difficultyFilter, sortBy]);
@@ -50,7 +46,7 @@ const Archive: React.FC = () => {
     <div className="max-w-6xl mx-auto px-4 py-16">
       <div className="mb-16">
         <h1 className="text-5xl font-black text-gray-900 mb-4 tracking-tighter">Integral Archive</h1>
-        <p className="text-xl text-gray-400 font-medium">A public ledger of {integrals.length} problems worked out with mathematical rigor.</p>
+        <p className="text-xl text-gray-400 font-medium">A growing archive of {integrals.length} integrals, carefully worked out and documented.</p>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-12">
@@ -93,9 +89,8 @@ const Archive: React.FC = () => {
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value as SortOption)}
             >
-              <option value="newest">Latest Entries</option>
-              <option value="oldest">Early Records</option>
-              <option value="difficulty">By Hardship</option>
+              <option value="newest">Sort by Newest</option>
+              <option value="oldest">Sort by Earliest</option>
             </select>
           </div>
         </aside>
