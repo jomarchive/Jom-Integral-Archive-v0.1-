@@ -36,7 +36,12 @@ const Top10: React.FC = () => {
 
       <div className="space-y-12">
         {topIntegrals.length > 0 ? topIntegrals.map((integral, index) => (
-          <div key={integral.id} className="group relative bg-white border border-gray-100 rounded-3xl p-8 md:p-12 transition-all hover:shadow-2xl hover:border-blue-200 shadow-sm flex flex-col md:flex-row gap-8 items-center overflow-hidden animate-fade-in" style={{ animationDelay: `${index * 0.1}s` }}>
+          <Link 
+            key={integral.id} 
+            to={`/integral/${integral.id}`}
+            className="group relative block bg-white border border-gray-100 rounded-3xl p-8 md:p-12 transition-all hover:shadow-2xl hover:border-blue-200 shadow-sm flex flex-col md:flex-row gap-8 items-center overflow-hidden animate-fade-in" 
+            style={{ animationDelay: `${index * 0.1}s` }}
+          >
             <div className="absolute top-0 left-0 bg-blue-600 text-white px-6 py-2 rounded-br-3xl font-black text-2xl tracking-tighter">
               #{integral.id}
             </div>
@@ -64,15 +69,12 @@ const Top10: React.FC = () => {
                     <span key={tag} className="text-[10px] bg-blue-50 text-blue-600 px-2 py-1 rounded-md font-bold uppercase tracking-tight">#{tag}</span>
                   ))}
                 </div>
-                <Link 
-                  to={`/integral/${integral.id}`}
-                  className="bg-gray-900 text-white px-8 py-3 rounded-xl font-bold hover:bg-blue-600 transition-all shadow-lg"
-                >
-                  View Details
-                </Link>
+                <div className="text-blue-600 font-bold text-sm uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-2">
+                  View Details <span className="text-lg">→</span>
+                </div>
               </div>
             </div>
-          </div>
+          </Link>
         )) : (
           <div className="text-center py-20 bg-gray-50 rounded-3xl border-2 border-dashed border-gray-200">
             <p className="text-gray-400 italic">No integrals currently marked for Top 10.</p>
