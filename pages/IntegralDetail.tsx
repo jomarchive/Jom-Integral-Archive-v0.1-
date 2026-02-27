@@ -13,7 +13,7 @@ const IntegralDetail: React.FC<Props> = ({ integralOverride }) => {
   const { id } = useParams<{ id: string }>();
   const { integrals, loading } = useData();
   const [showHint, setShowHint] = useState(false);
-  const [showSolution, setShowSolution] = useState(false);
+  const [showAnswer, setShowAnswer] = useState(false);
   
   const integral = integralOverride || integrals.find(i => i.id === id);
 
@@ -117,7 +117,7 @@ const IntegralDetail: React.FC<Props> = ({ integralOverride }) => {
             <h3 className="text-lg font-bold">Solution</h3>
           </div>
           <div className="flex-grow min-h-[100px] flex flex-col items-center justify-center">
-            {showSolution ? (
+            {showAnswer ? (
               <div className="text-center animate-fade-in w-full">
                 {integral.answer && (
                   <div className="mb-6">
@@ -132,27 +132,31 @@ const IntegralDetail: React.FC<Props> = ({ integralOverride }) => {
                     Note: Indefinite integral answers may look different, but they are equivalent as long as they differentiate to the same function (up to +C).
                   </p>
                 )}
-                <a 
-                  href={integral.solutionUrl} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="mt-2 inline-block bg-blue-600 text-white px-8 py-4 rounded-2xl font-black uppercase tracking-[0.15em] text-xs hover:bg-blue-500 transition-all shadow-lg shadow-blue-900/40"
-                >
-                  View solution
-                </a>
               </div>
             ) : (
               <p className="text-gray-600 text-sm font-medium text-center italic">
-                Solution is currently hidden.
+                Answer is currently hidden.
               </p>
             )}
           </div>
-          <button 
-            onClick={() => setShowSolution(!showSolution)}
-            className={`w-full mt-8 py-4 rounded-2xl font-black uppercase tracking-widest text-xs transition-all ${showSolution ? 'bg-gray-800 text-gray-500 hover:text-white' : 'bg-blue-700 text-white hover:bg-blue-600'}`}
-          >
-            {showSolution ? 'Hide Solution' : 'Reveal Solution'}
-          </button>
+          <div className="flex flex-col gap-3 mt-8">
+            <button 
+              onClick={() => setShowAnswer(!showAnswer)}
+              className={`w-full py-4 rounded-2xl font-black uppercase tracking-widest text-xs transition-all ${showAnswer ? 'bg-gray-800 text-gray-500 hover:text-white' : 'bg-blue-700 text-white hover:bg-blue-600'}`}
+            >
+              {showAnswer ? 'Hide Answer' : 'Reveal Answer'}
+            </button>
+            {integral.solutionUrl && (
+              <a 
+                href={integral.solutionUrl} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="w-full py-4 rounded-2xl font-black uppercase tracking-widest text-xs transition-all bg-white text-gray-900 hover:bg-gray-100 text-center flex items-center justify-center"
+              >
+                VIEW FULL SOLUTION (PDF)
+              </a>
+            )}
+          </div>
         </div>
       </div>
 
