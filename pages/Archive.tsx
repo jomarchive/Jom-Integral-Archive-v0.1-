@@ -66,7 +66,7 @@ const Archive: React.FC = () => {
           <div>
             <label className="block text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] mb-4">Difficulty</label>
             <div className="flex flex-col gap-2">
-              {['All', Difficulty.EASY, Difficulty.MEDIUM, Difficulty.HARD].map(diff => (
+              {['All', Difficulty.EASY, Difficulty.MEDIUM, Difficulty.HARD, Difficulty.VERY_HARD].map(diff => (
                 <button
                   key={diff}
                   onClick={() => setDifficultyFilter(diff as any)}

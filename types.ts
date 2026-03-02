@@ -2,7 +2,8 @@
 export enum Difficulty {
   EASY = 'Easy',
   MEDIUM = 'Medium',
-  HARD = 'Hard'
+  HARD = 'Hard',
+  VERY_HARD = 'Very Hard'
 }
 
 export interface Integral {

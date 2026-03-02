@@ -89,6 +89,7 @@ export const DataProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
               const rawDiff = String(row.DIFFICULTY || '').toLowerCase().trim();
               if (rawDiff === 'easy') diff = Difficulty.EASY;
               else if (rawDiff === 'hard') diff = Difficulty.HARD;
+              else if (rawDiff === 'veryhard') diff = Difficulty.VERY_HARD;
 
               const rawTags = row.TAGS ? row.TAGS.split(',').map((t: string) => t.trim().toLowerCase()) : [];
 

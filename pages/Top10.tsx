@@ -17,6 +17,7 @@ const Top10: React.FC = () => {
       case Difficulty.EASY: return 'text-green-500';
       case Difficulty.MEDIUM: return 'text-yellow-500';
       case Difficulty.HARD: return 'text-red-500';
+      case Difficulty.VERY_HARD: return 'text-purple-500';
       default: return 'text-gray-400';
     }
   };
